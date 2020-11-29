@@ -8,19 +8,61 @@ choices = ["rock", "paper", "scissors"]
 
 
 
-player_lives = 5
-ai_lives = 5
+player_lives = 1
+ai_lives = 1
 
-total_lives = 5 
+total_lives = 1 
+
+# define a win or lose function
+def winorlose(status):
+	# print("inside winorlose function; status is: ", status)
+
+	if status =="won":
+		pre_message = "You are the winner! "
+	else:
+		pre_message = "you are lose! "
+
+	print("You", status, "! Would you like to play again?")
+	choice = input("Y / N? ")
+
+	if choice == "N" or choice == "n": 
+		print("You chose to quit! Better luck next time!")
+		exit()
+
+	elif choice =="Y" or choice =="y":
+		# reset the player lives and the AI lives
+		# and set player to False so that our loop will restart
+		global player_lives 
+		global ai_lives
+		global player
+
+		player_lives = 1
+		ai_lives = 1
+		player = False
+	
+	else:
+		print("Make a valid choice - Y or N")
+		# this will generate a bug that we need to fix later
+		choice = input("Y / N")
 
 
- #True and False are Boolean data types -> they are the equivalent of on or offf, 1 or 0 
+ # True and False are Boolean data types -> they are the equivalent of on or offf, 1 or 0 
 player = False 
 
 while player is False: 
-	
+	print("==============*/ RPS GAME /*===============")
+	print("Computer Lives:",ai_lives, "/", total_lives)
+	print("Player Lives:", player_lives, "/", total_lives)
+	print("=========================================")
+
+	print("Choose your weapon! or type quit to exit\n")
 	#this is the player choice
-	player = input("Choose rock, paper or scissors: ")
+	player = input("Choose rock, paper or scissors: \n")
+
+	#if the player chose to quit, then exit the game 
+	if player =="quit":
+		print("you chose to quit")
+		exit()
 
 	#player = True -> it has value (rock, paper, or scissors)
 
@@ -62,6 +104,32 @@ while player is False:
 		else:
 			print("you win!")
 			ai_lives -= 1
+	if player_lives is 0:
+		winorlose("lost")
+
+		
+	if ai_lives is 0:
+		winorlose("won")
+		
+		# print("Winner! Would you like to play again?")
+		# choice = input("Y / N? ")
+
+		# if choice == "N" or choice == "n": 
+		#	print("You chose to quit! Better luck next time!")
+		#	exit()
+
+		#elif choice =="Y" or choice =="y":
+			# reset the player lives and the AI lives
+			# and set player to False so that our loop will restart
+		#	player_lives = 1
+		#	ai_lives = 1
+		#	player = False
+		
+		#else:
+		#	print("Make a valid choice - Y or N")
+			# this will generate a bug that we need to fix later
+		#	choice = input("Y / N")		
+
 
 	print("player has ", player_lives, "lives left")
 	print("ai lives:", ai_lives, "lives left")

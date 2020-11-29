@@ -1,6 +1,6 @@
 # set up variable, check it's value, and then go sown some different paths depending on the outcomes
 
-# cast our user input - which by default will be text 
+# cast our user input - which by default will be text - to a number using int()
 temperature = int(input("input a value between 0 and 100: "))
 
 if (temperature <= 4): 
